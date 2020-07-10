@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Gallery from './Texts';
+import Texts from './Texts';
 
 
 const mapStateToProps = (state) => {
 
     return {
-        galleryData: state.galleryPage.dataTexts
+        textsData: state.galleryPage.dataTexts
     };
 };
 

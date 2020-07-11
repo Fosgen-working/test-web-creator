@@ -1,5 +1,18 @@
 @import "../../../vars";
 
 .Texts {
-    
+    h3 {
+        margin-top: 40px;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        color: $black;
+    }
+
+    p { 
+        margin-top: 12px;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 140%;
+    }
 }

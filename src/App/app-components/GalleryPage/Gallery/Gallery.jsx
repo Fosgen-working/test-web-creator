@@ -6,24 +6,26 @@ const Gallery = (props) => {
 
   let images = props.galleryData.metadata.images.map(imgGallery => <div key={imgGallery.id} className='slide'><img src={'/img/' + imgGallery} alt='осень' /></div>);
 
+  let view = props.galleryData.metadata.slidesPerView;
+
   let settings = {
     dots: true,
     infinite: true,
-    slidesToShow: props.galleryData.metadata.slidesPerView,
-    slidesToScroll: props.galleryData.metadata.slidesPerView,
+    slidesToShow: view,
+    slidesToScroll: view,
     responsive: [
       {
         breakpoint: 767,
         settings: {
-          slidesToShow: props.galleryData.metadata.slidesPerView - 1,
-          slidesToScroll: props.galleryData.metadata.slidesPerView - 1
+          slidesToShow: view - 1,
+          slidesToScroll: view - 1
         }
       },
       {
         breakpoint: 575,
         settings: {
-          slidesToShow: props.galleryData.metadata.slidesPerView - 2,
-          slidesToScroll: props.galleryData.metadata.slidesPerView - 2
+          slidesToShow: view - 2,
+          slidesToScroll: view - 2
         }
       }
     ]

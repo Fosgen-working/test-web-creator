@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 
 const Gallery = (props) => {
 
-  let images = props.galleryData.metadata.images.map(imgGallery => <div key={imgGallery.id} className='slide'><img src={'/img/' + imgGallery} alt='осень' /></div>);
+  let images = props.galleryData.metadata.images.map(imgGallery => <div className='slide'><img src={'/img/' + imgGallery} alt='осень' /></div >);
 
   let view = props.galleryData.metadata.slidesPerView;
 

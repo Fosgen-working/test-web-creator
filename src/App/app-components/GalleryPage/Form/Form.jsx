@@ -2,10 +2,8 @@ import React from 'react';
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Markup } from 'interweave';
-import Calendar from 'react-calendar'
 import dynamicAttributes from '../../../app-functions/dynamicAttributes';
 import './Form.scss';
-import 'react-calendar/dist/Calendar.css';
 
 const Form = (props) => {
   let titlesFields = {};
@@ -19,49 +17,45 @@ const Form = (props) => {
   let attributeAdditional = props.formData.field_groups.additional.substr(4, 2);
   let sizeAdditional = (props.formData.field_groups.additional.length > 8 ? props.formData.field_groups.additional.substr(-2, 2) : props.formData.field_groups.additional.substr(-1, 1));
 
-  let fieldsMain = props.formData.fields.map(field => {
-
+  let fieldsMain = [];
+  props.formData.fields.forEach(field => {
     if (field.group === 'main') {
       if (field.type === 'textarea') {
-        return (
-          <Col {...dynamicAttributes(attributeMain, 6)}>
-            <label for={field.id}>{field.label}</label>
-            <textarea id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} className='textarea-form' required={field.required}></textarea>
-          </Col>
-        );
+        fieldsMain.push(<Col {...dynamicAttributes(attributeMain, 6)}>
+          <label for={field.id}>{field.label}</label>
+          <textarea id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} className='textarea-form' required={field.required}></textarea>
+        </Col>);
       }
       else {
-        return (
-          <Col {...dynamicAttributes(attributeMain, 6)}>
-            <label for={field.id}>{field.label}</label>
-            <input onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} id={field.id} name={field.name} type={field.type} className='input-form' required={field.required} />
-          </Col>
-        );
+        fieldsMain.push(<Col {...dynamicAttributes(attributeMain, 6)}>
+          <label for={field.id}>{field.label}</label>
+          <input onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} id={field.id} name={field.name} type={field.type} className='input-form' required={field.required} />
+        </Col>);
       }
     }
 
   });
 
-  let fieldsAdditional = props.formData.fields.map(field => {
+  let fieldsAdditional = [];
+  props.formData.fields.forEach(field => {
     if (field.group === 'additional') {
       if (field.type === 'textarea') {
-        return (
-          <div>
-            <label for={field.id}>{field.label}</label>
-            <textarea id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} className='textarea-form' required={field.required}></textarea>
-          </div>
-        );
+        fieldsAdditional.push(<div>
+          <label for={field.id}>{field.label}</label>
+          <textarea id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} className='textarea-form' required={field.required}></textarea>
+        </div>);
       }
       else {
-        return (
+        fieldsAdditional.push(
           <div>
             <label for={field.id}>{field.label}</label>
             <input id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} type={field.type} className='input-form' required={field.required} />
-          </div>
-        );
+          </div>);
       }
     }
-
+    else {
+      return
+    }
   });
 
   let agreement = props.formData.fields.find(item => item.name === 'agreement');
@@ -80,7 +74,6 @@ const Form = (props) => {
         </Col>
       </Row>
       <div className='agreement'>
-        <Calendar />
         <input id='agreement' type={agreement.type} name={agreement.name} onChange={() => { props.updateTitles(titlesFields[agreement.name].current.value, agreement.name) }} ref={titlesFields[agreement.name]} value={props.fieldsData[agreement.name].value} />
         <label for='agreement'><Markup content={agreement.label} /></label>
       </div>

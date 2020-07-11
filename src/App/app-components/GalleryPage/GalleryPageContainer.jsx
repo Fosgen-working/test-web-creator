@@ -1,4 +1,3 @@
-import React from 'react';
 import { connect } from 'react-redux';
 import { setGalleryPageAC, toggleIsFetchingPageAC } from '../../../redux/galleryPageReducer';
 import { toggleIsFetchingFormsAC, setFormsAC } from '../../../redux/formsReducer';

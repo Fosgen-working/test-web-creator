@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setGalleryPageAC, toggleIsFetchingAC } from '../../../redux/galleryPageReducer';
+import { setGalleryPageAC, toggleIsFetchingPageAC } from '../../../redux/galleryPageReducer';
+import { toggleIsFetchingFormsAC, setFormsAC } from '../../../redux/formsReducer';
 import GalleryPageAPI from './GalleryPageAPI';
 
 const mapStateToProps = (state) => {
 
     return {
-        isFetching: state.galleryPage.isFetching
+        isFetchingPage: state.galleryPage.isFetching,
+        isFetchingForms: state.formsText.isFetching
     };
 };
 
@@ -15,8 +17,14 @@ const mapDispatchToProps = (dispatch) => {
         setPage: (data) => {
             dispatch(setGalleryPageAC(data));
         },
-        toggle: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching));
+        setForms: (data) => {
+            dispatch(setFormsAC(data));
+        },
+        togglePage: (isFetching) => {
+            dispatch(toggleIsFetchingPageAC(isFetching));
+        },
+        toggleForms: (isFetching) => {
+            dispatch(toggleIsFetchingFormsAC(isFetching));
         }
     };
 };

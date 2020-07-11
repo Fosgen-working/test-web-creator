@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Form from './Form';
-import { updateTitlesFieldsAC } from '../../../../redux/galleryPageReducer';
+import { updateTitlesFieldsAC } from '../../../../redux/formsReducer';
 
 
 const mapStateToProps = (state) => {
 
     return {
         formData: state.galleryPage.dataForm,
-        fieldsData: state.galleryPage.dataFields
+        fieldsData: state.formsText
     };
 };
 
@@ -16,8 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         updateTitles: (textFields, nameFields) => {
             dispatch(updateTitlesFieldsAC(textFields, nameFields));
-        },
-
+        }
     };
 };
 

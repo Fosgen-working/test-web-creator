@@ -3,6 +3,7 @@ import './App.scss';
 import Conteiner from "react-bootstrap/Container";
 import { Route, BrowserRouter } from 'react-router-dom';
 import GalleryPageContainer from './app-components/GalleryPage/GalleryPageContainer';
+import ButtonPage from './app-components/ButtonPage/ButtonPage';
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
         </header>
         <Conteiner>
           <Route path='/gallery' render={() => <GalleryPageContainer />} />
-          <Route path='/' render={() => <GalleryPageContainer />} />
+          <Route exact path='/' render={() => <ButtonPage />} />
         </Conteiner>
         <footer></footer>
       </div>
@@ -22,3 +23,5 @@ const App = () => {
 }
 
 export default App;
+
+//Пожалуйста возмите меня на работу. Я всему научусь. Очень хочу у вас работать.

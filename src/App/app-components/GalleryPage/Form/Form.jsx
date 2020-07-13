@@ -7,7 +7,6 @@ import dynamicAttributes from '../../../app-functions/dynamicAttributes';
 import './Form.scss';
 
 const Form = (props) => {
-  debugger
   let titlesFields = {};
   props.formData.fields.forEach(item => {
     let objectElement = item.name;

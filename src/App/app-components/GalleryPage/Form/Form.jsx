@@ -53,7 +53,7 @@ const Form = (props) => {
         fieldsAdditional.push(
           <div>
             <label for={field.id}>{field.label}</label>
-            <input id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} type={field.type} className='input-form' required={field.required} />
+            {field.name === 'appointment_date' ? <DatePicker onChange={onChange} value={value} calendarIcon={<img src="/img/calendar-icon/calendarIcon.svg" alt="Icon" id={field.id} />} clearIcon={null} /> : <input id={field.id} onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} name={field.name} type={field.type} className='input-form' required={field.required} />}
           </div>);
       }
     }

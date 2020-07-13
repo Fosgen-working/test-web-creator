@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import DatePicker from 'react-date-picker';
 import { Markup } from 'interweave';
 import dynamicAttributes from '../../../app-functions/dynamicAttributes';
 import './Form.scss';
 
 const Form = (props) => {
+  debugger
   let titlesFields = {};
   props.formData.fields.forEach(item => {
     let objectElement = item.name;
     titlesFields[objectElement] = React.createRef();
   });
+
+  const [value, onChange] = useState(new Date());
 
   let attributeMain = props.formData.field_groups.main.substr(4, 2);
   let sizeMain = (props.formData.field_groups.main.length > 8 ? props.formData.field_groups.main.substr(-2, 2) : props.formData.field_groups.main.substr(-1, 1));
@@ -29,7 +33,7 @@ const Form = (props) => {
       else {
         fieldsMain.push(<Col {...dynamicAttributes(attributeMain, 6)}>
           <label for={field.id}>{field.label}</label>
-          <input onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} id={field.id} name={field.name} type={field.type} className='input-form' required={field.required} />
+          {field.name === 'appointment_date' ? <DatePicker onChange={onChange} value={value} calendarIcon={<img src="/img/calendar-icon/calendarIcon.svg" alt="Icon" id={field.id} />} clearIcon={null} /> : <input onChange={() => { props.updateTitles(titlesFields[field.name].current.value, field.name) }} ref={titlesFields[field.name]} value={props.fieldsData[field.name].value} id={field.id} name={field.name} type={field.type} className='input-form' required={field.required} />}
         </Col>);
       }
     }

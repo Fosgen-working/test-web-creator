@@ -76,4 +76,50 @@
             box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.25);
         }
     }
+
+    .react-date-picker {
+        padding: 0 12px;
+        width: 100%;
+        height: 48px;
+        border: 1px solid $gray;
+        border-radius: 3px;
+        font-weight: normal;
+        font-size: 14px;
+        transition: border 200ms ease;
+
+        .react-date-picker__wrapper {
+            border: 0;
+
+            .react-date-picker__inputGroup__input:invalid {
+                background-color: transparent;
+            }
+        }
+    }
+
+    .react-date-picker--open {
+        border: 1px solid $gradient1;
+    }
+
+    .react-date-picker__calendar {
+
+
+        .react-calendar {
+            border: 1px solid $gray;
+            border-radius: 5px;
+
+            .react-calendar__tile--now {
+                background: $gradient1;
+                border-radius: 3px;
+            }
+
+            .react-calendar__tile--active {
+                background-color: $gray;
+                border-radius: 3px;
+            }
+
+            .react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+                border-radius: 3px;
+            }
+        }
+    }
 }
